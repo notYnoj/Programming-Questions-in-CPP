@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll a, b;
+ 
+int main(){
+    cin>>a>>b;
+    vector<ll> nums(a);
+    for(int i = 0; i<a; i++) {
+        cin>>nums[i];
+    }
+    ll l = 0;
+    ll r = 0;
+    ll temp = 0;
+    ll ans = 0;
+    while(r<a) {
+        temp += nums[r];
+        if(temp>b){
+            temp-=nums[l];
+            l++;
+        }
+        ans=max(ans, r-l+1);
+        r++;
+    }
+    cout<<ans;
+}
