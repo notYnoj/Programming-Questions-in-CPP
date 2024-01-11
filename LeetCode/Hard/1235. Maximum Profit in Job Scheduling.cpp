@@ -1,5 +1,7 @@
 class Solution {
 public:
+//dp solution where we use binary search to find the nearest one that does not overlap there we add the two together and compare with dp[i] 
+//we also make sure to check not including with dp[i] (include] dp[i-1] (exclude)
     int jobScheduling(vector<int>& startTime, vector<int>& endTime, vector<int>& profit) {
         int n = startTime.size();
         vector<vector<int>> jobs;
@@ -27,6 +29,7 @@ public:
     }
 
 private:
+//binary search
     int findPrevNonOverlap(const vector<vector<int>>& jobs, int currentJob) {
         int low = 0, high = currentJob - 1;
         while (low <= high) {
