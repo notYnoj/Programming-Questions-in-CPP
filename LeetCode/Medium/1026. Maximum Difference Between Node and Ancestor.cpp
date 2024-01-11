@@ -16,7 +16,7 @@ public:
     }
 
 private:
-//this is testing passing in by reference and value, by passing by value we can simply make a dfs call and not worry about subtracting any non-parent values.
+//this is testing passing in by reference and value, by passing by value we can simply make a dfs call and not worry about subtracting any non-ancestor values.
     int dfs(TreeNode* node, int min_val, int max_val) {
         if (!node) { // if null
             return max_val - min_val; // return max
