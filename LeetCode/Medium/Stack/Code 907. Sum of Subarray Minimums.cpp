@@ -25,6 +25,6 @@ public:
             result %= MOD;
         }
 
-        return static_cast<int>(result);
+        return result;
     }
 };
