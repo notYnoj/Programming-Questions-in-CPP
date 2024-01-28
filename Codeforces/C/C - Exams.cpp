@@ -11,6 +11,7 @@ int main() {
     for(int i = 0; i<n; i++) {
         cin >> a[i][0] >> a[i][1];
     }
+    //sort in order to get the order normally for the exams optimize with Bi in the for loop
     sort(a, a+n);
     //for the first day take the minimum
     int amount = min(a[0][0], a[0][1]);
