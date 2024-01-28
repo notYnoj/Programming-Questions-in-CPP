@@ -1,5 +1,5 @@
 class Solution {
-//refer to Codeforces/D/D-Multiplication Table for explantion
+//refer to Codeforces/D/D-Multiplication Table for explanation
 public:
     int findKthNumber(int m, int n, int k) {
         int low = 1;
