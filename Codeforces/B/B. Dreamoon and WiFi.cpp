@@ -39,10 +39,11 @@ int main() {
                 pathmap -= 1;
             }
         }
-    // 
+    //if not able to change enough cout 0 
     if((c<abs(pathmap - takemap)) || (c==0 && pathmap != takemap)) {
         cout << 0.000000000000;
         return 0;
+//if no changes and its equal cout 1, hes def there
     }else if(c == 0 && pathmap == takemap){
         cout<<1.000000000000;
     }else{
