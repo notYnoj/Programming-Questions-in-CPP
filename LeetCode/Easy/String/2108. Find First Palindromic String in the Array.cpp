@@ -13,7 +13,7 @@ private:
     bool check(string s){
         int i = 0;
         int j = s.size()-1;
-        while(j>=i){
+        while(j>i){
             if(s[j] == s[i]){
                 j--;
                 i++;
