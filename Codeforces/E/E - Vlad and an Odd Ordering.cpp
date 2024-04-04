@@ -2,6 +2,9 @@
 using namespace std;
 long long cases;
 long long find(long long cards, long long power){
+  //we want max
+  //we find this wherever cards = power * (2k-1) (2k-1 as we want k = max [think about it if k = 1, max is 1 just as we like])
+  //now we just solve, distrbute power we get cards - power/2*power = k
   //going to have at max cards+power/power*2
   //this is based on the fact that if it starts at pos x (power) + max = 12/ what it climbs by (since it climbs by odd aka 2k+1) u multiply by 2
     long long pssb = (cards+power)/(power*2);
