@@ -5,18 +5,20 @@ const int mxN = 1e6+5;
 int KMParr[mxN];
 string s;
 void KMP() {
+    //kmp, if words repeat so does the array increasing, for KMP the distance u move is len - arr[len];
     KMParr[0] = 0;
     int temp = 0;
     for (int i = 1; i < s.size(); i++) {
         while (temp != 0 && s[i] != s[temp]) {
-            temp = KMParr[temp - 1];
+            temp = KMParr[temp - 1]; <- this is needed
         }
         if (s[i] == s[temp]) {
-            temp++;
+            temp++; <- if equal add 1 becuase it equals prefix
             KMParr[i] = temp;
         }else{
-            KMParr[i] = 0;
+            KMParr[i] = 0; <- if nothing equals prefix reset it to be able to shift by all of len
         }
+        //you know we are shifting by something but how much? well if we get everything correct up to some point then if the final part has something equal to the prefix yk we have to check there!, len of array (what u got correct, - equivalent suffix is where the equivalent suffix begins, when u shfit)
     }
 }
 int main(){
