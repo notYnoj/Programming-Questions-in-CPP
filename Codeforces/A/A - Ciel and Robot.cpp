@@ -6,14 +6,7 @@ int main(){
     cin>>x>>y;
     string s;
     cin>>s;
-    /*if(x == 2 && y == 6 && s == "RUUUURLDDDL"){
-        cout<<"Yes";
-        return 0;
-    }
-    if(x == 999999999 && y == -999999999 && s == "RRRRRRRRRRRRRRRRRRRRRRRRRDDDDDDDDDDDDDDDDDDDDDDDDDLLLLLLLLLLLLLLLLLLLLLLLUUUUUUUUUUUUUUUUUUUUUUU"){
-        cout<<"Yes";
-        return 0;
-    }*/
+
     //net change
     ll dx = 0;
     ll dy = 0;
