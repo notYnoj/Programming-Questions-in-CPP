@@ -41,12 +41,12 @@ int main(){
     bool check = true;
     map<ll, ll> mp;
     for(ll i = 1; i<=n; i++){
-        mp[get(i)] += grid[i].size();
+        mp[get(i)] += grid[i].size(); //handshaking lemma 
     }
 
     for(ll i = 1; i<=n; i++){
-        ll a = get(i);
-        ll g = gauss(c[a]);
+        ll a = get(i); // get the amount of edges in this undirected graph
+        ll g = gauss(c[a]); //for it to be good u have to have all of them connected to one another, x-y y-z y-a then x and z must also connected to a and x and z must connect
         if((mp[a]/2) != g){
             check = false;
             break;
