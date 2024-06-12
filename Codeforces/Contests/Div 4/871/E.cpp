@@ -10,6 +10,7 @@ bool safe(int x, int y, int i, int j){
         return false;
     }
 }
+//dsu in 2d make each cell into an array.
 class dsu{
     public:
     vector<int> depth, parent;
