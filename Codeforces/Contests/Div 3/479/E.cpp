@@ -47,7 +47,7 @@ int main(){
         int a,b;
         cin>>a>>b;
         graph[a].push_back(b);
-        graph[b].push_back(a); //WAS GRAPH[B].PUSH_BACK(B)
+        graph[b].push_back(a); //WAS GRAPH[B].PUSH_BACK(B) adjkfasdjkfasdjfkaskdjfasdkjfhawlieamndsc mnxbuihw efqw0t84hJ;KJ;kjfha;hsdfpuh
         merge(a,b);
     }
     int ans = 0;
