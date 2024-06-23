@@ -2,6 +2,8 @@
 using namespace std;
 #define ll long long
 int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
     ll n,m;
     cin>>n>>m;
     string s;
@@ -28,8 +30,7 @@ int main(){
     else {
         ll t = 0;
         if(s[0] == s[n-1] && !nulls[0] &&!nulls[n-1]){
-            while(s[n-1] == s[0]){
-
+            while(s[n-1] == s[0] && !nulls[n-1]){
                 t+=arr[n-1];
                 n--;
             }
@@ -48,6 +49,7 @@ int main(){
                 if(nulls[i+1]||s[i] == s[i+1]){
                     pref+= arr[i];
                 }else{
+                    pref+=arr[i];
                     if(cur == true) pref+=t;
                     ans+=max(pref-m, 0LL);
                     pref = 0;
@@ -55,7 +57,6 @@ int main(){
                 }
             }
         }
-
         ans+=max(pref-m, 0LL);
         cout<<ans;
     }
