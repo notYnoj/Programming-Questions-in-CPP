@@ -10,7 +10,7 @@ void init(){
     //if u have 0 bits and have any number of k bits since u only have 0 bits u can only have 0 thus its always 1
     for(auto& i : dp) i[0] = 1;
     for(int i = 0; i<mxN; i++) dp[0][i] = 1;
-    int combo_l_r = 1;
+    ll combo_l_r = 1;
     for(int i = 1; i<mxN; i++){
         for(int k = 1; k<mxN; k++){
             dp[i][k] += ((dp[i-1][k] + dp[i-1][k-1]) %MOD);  //0s (split it into 0 and 1) 1s
@@ -18,16 +18,38 @@ void init(){
             else if(k>=i) dp[i][k] += ((combo_l_r*combo_l_r)% MOD);
             dp[i][k] %= MOD;
         }
-        combo_l_r*=2; // becuz were splitting in half it has to be 2 times more (aka 1<<i/2 splits into 2)
+        combo_l_r*=2;
+        combo_l_r%=MOD;// becuz were splitting in half it has to be 2 times more (aka 1<<i/2 splits into 2)
     }
 }
 void solve(){
-    int n,k;
+    ll n,k;
     cin>>n>>k;
     ll ans = 0;
-    while(true){
-        
+    while(k>=0){
+        if(n == 0){
+            break;
+        }
+        int Mbit = 0;
+        for(int bit = mxN; bit>=0; bit--){
+            if((1LL<<bit) & n){
+                Mbit = bit;
+                break;
+            }
+        }
+        if(k>=Mbit){
+            n%=MOD;
+            ans+=(n *(n+1LL)/2LL);
+            ans%=MOD;
+            break;
+        }
+        ans+=dp[Mbit][k];
+        ans%=MOD;
+        n-=(1LL<<Mbit);
+        k--;
     }
+    ans%=MOD;
+    cout<<ans<<'\n';
 }
 
 int main(){
