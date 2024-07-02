@@ -2,45 +2,64 @@
 using namespace std;
 
 int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
     int n;
     cin>>n;
     string s;
     cin>>s;
-    map<char, vector<int>> nums;
-    map<char, int> dp;
-    map<char, pair<int, int>> dp2;
-    for(int i =0; i<n; i++){
-        nums[s[i]].push_back(i);
-    }
     int q;
     cin>>q;
     while(q--){
         char c;
-        int changes;
-        cin>>c>>changes;
-        if(changes==n){
+        int k;
+        cin>>k>>c;
+        if(k == n){
             cout<<n<<'\n';
             continue;
         }
-        if(n-nums[c].size()<=changes){
-            cout<<n<<'\n';
-            continue;
-        }
-        if(dp.find(c) != dp.end()){
-            int amnt = dp[c];
-            if(changes>amnt){
-                int ans = 2+amnt;
-                changes-=amnt;
-                auto numbers = nums[c];
-                
-
-            }else{
-                cout<<(changes+(amnt == changes?2:1))<<'\n';
+        int l = 0;
+        int r = k-1;
+        int count = 0;
+        int ans = k;
+        for(int i = 0; i<=r; i++){
+            if(s[i] == c){
+                count++;
             }
-        }else{
-
-
         }
+        while(count-- && r<n){
+            r++;
+            if(s[r] == c){
+                count++;
+            }
+            ans++;
+        }
+        while(r+1<n && s[r+1] == c){
+            ans++;
+            r++;
+        }
+        if(r == n){
+            cout<<n<<'\n';
+            continue;
+        }
+        if(ans == n){
+            cout<<n<<'\n';
+            continue;
+        }
+        while(r<n){
+            if(s[l] == c){
+                while(s[l] == c){
+                    l++;
+                }
+            }
+            l++;
+            r++;
+            assert(s[r]!=c);
+            while(r+1<n && s[r+1] == c){
+                r++;
+            }
+            ans = max(ans, (r-l+1));
+        }
+        cout<<ans<<"\n";
     }
-
 }
