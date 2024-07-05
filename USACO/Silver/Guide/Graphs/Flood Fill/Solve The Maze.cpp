@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 const int mxN = 2505;
@@ -28,11 +27,15 @@ void solve(){
     }
     vector<vector<char>> grid(n, vector<char> (m));
     bool check = false;
+    bool check2 = false;
     for(int i =0; i<n; i++){
         for(int j = 0; j<m; j++){
             cin>>grid[i][j];
             if(grid[i][j] == 'G'){
                 check = true;
+            }
+            if(grid[i][j] == 'B'){
+                check2 = true;
             }
         }
     }
@@ -46,6 +49,7 @@ void solve(){
             if(grid[i][j] == 'G'){
                 if(i+1<n){
                     if(grid[i+1][j] == 'B'){
+
                         cout<<"NO\n";
                         return;
                     }
@@ -55,6 +59,7 @@ void solve(){
                 }
                 if(i-1>=0){
                     if(grid[i-1][j] == 'B'){
+
                         cout<<"NO\n";
                         return;
                     }
@@ -64,6 +69,7 @@ void solve(){
                 }
                 if(j+1<m){
                     if(grid[i][j+1] == 'B'){
+
                         cout<<"NO\n";
                         return;
                     }
@@ -73,6 +79,7 @@ void solve(){
                 }
                 if(j-1>=0){
                     if(grid[i][j-1] == 'B'){
+
                         cout<<"NO\n";
                         return;
                     }
@@ -83,23 +90,24 @@ void solve(){
             }
             if(grid[i][j] == 'B'){
                 if(i+1<n){
-                    if(grid[i+1][j] == 'G'){ cout<<"NO\n"; return;}
-                    grid[i+1][j] = '#';
+                    if(grid[i+1][j] == 'G'){ cout<<"NO\n";  return;}
+                    if(grid[i+1][j] != 'B') grid[i+1][j] = '#';;
+
                 }
                 if(j+1<m){
-                    if(grid[i][j+1] == 'G'){ cout<<"NO\n"; return;}
+                    if(grid[i][j+1] == 'G'){ cout<<"NO\n";  return;}
+                    if(grid[i][j+1] != 'B') grid[i][j+1] = '#';;
 
-                    grid[i][j+1] = '#';
                 }
                 if(i-1>=0){
                     if(grid[i-1][j] == 'G'){ cout<<"NO\n"; return;}
+                    if(grid[i-1][j] != 'B') grid[i-1][j] = '#';;
 
-                    grid[i-1][j] = '#';
                 }
                 if(j-1>=0){
-                    if(grid[i][j-1] == 'G'){ cout<<"NO\n"; return;}
-
-                    grid[i][j-1] = '#';
+                    if(grid[i][j-1] == 'G'){ cout<<"NO\n";
+                        return;}
+                    if(grid[i][j-1] != 'B') grid[i][j-1] = '#';;
                 }
             }
         }
@@ -128,9 +136,10 @@ void solve(){
                 int newY = currY + dy[i];
 
                 if (newX >= 0 && newX < n && newY >= 0 && newY < m &&
-                    !visited[newX][newY] && grid[newX][newY] != '#') {
+                    !visited[newX][newY] && grid[newX][newY] != '#'){
                     visited[newX][newY] = true;
                     q.push({newX, newY});
+                    found[find(newX*m + newY)] = 1;
                 }
             }
         }
@@ -140,7 +149,8 @@ void solve(){
     for(int i =0; i<n; i++){
         for(int j =0; j<m; j++){
             if(grid[i][j] == 'G' && !found[find((i*m+j))]){
-                if(!bfs(i*m+j)){
+                if(!bfs(find(i*m+j))){
+
                     cout<<"NO\n";
                     return;
                 }
@@ -152,6 +162,8 @@ void solve(){
 
 }
 int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
     int t;
     cin>>t;
     while(t--){
