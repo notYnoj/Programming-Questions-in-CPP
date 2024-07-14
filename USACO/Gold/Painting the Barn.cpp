@@ -1,24 +1,18 @@
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
-const int WIDTH = 201;
-void assert_with_error_code(bool condition, int i) {
-    if (!condition) {
-        std::cerr << "Line, failed at " <<i<< std::endl;
-        std::exit(1);
-    }
-}
+const int WIDTH = 200;
 int main() {
-    //std::ifstream read("paintbarn.in");
+    std::ifstream read("paintbarn.in");
 
     ll rect_num;
     ll optimal_amt;
-    cin >> rect_num >> optimal_amt;
+    read >> rect_num >> optimal_amt;
 
     vector<vector<ll>> barn(WIDTH, vector<ll>(WIDTH));
     for (ll r = 0; r < rect_num; r++) {
         ll x1, y1, x2, y2;
-        cin >> x1 >> y1 >> x2 >> y2;
+        read >> x1 >> y1 >> x2 >> y2;
         for (ll y = y1; y < y2; y++) {
             barn[y][x1]++;
             if (x2 < WIDTH) { barn[y][x2]--; }
@@ -75,7 +69,6 @@ int main() {
             for(ll rows = 0; rows<WIDTH; rows++){
                 ll cur_sum = getRec(lf, top, rows, bottom);
                 ll this_row = getRec(rows, top, rows, bottom);
-
                 if(cur_sum<this_row){
                     lf = rows;
                     if(top != 0) down[top-1] = max(down[top-1], this_row);
@@ -110,6 +103,6 @@ int main() {
     for(ll i = 0; i<WIDTH; i++){
         ans = max(ans, left[i]+right[i]);
     }
-    cout << rn_amt + ans << endl;
+    std::ofstream("paintbarn.out") << rn_amt + ans << endl;
 
 }
