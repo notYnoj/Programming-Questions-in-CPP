@@ -13,6 +13,16 @@ void solve(){
         //all disconnected can be grouped into 1
         // non disconnected must form own
         //all other ones can form own for their own sake
+        auto find = [=](int a)->int{
+            if(dsu[a] == a){
+                return a;
+            }else{
+                dsu[a] = find(a);
+            }
+        };
+        auto merge = [=](int a, int b){
+
+        };
         for(int i =0; i<n; i++){
 
         }
