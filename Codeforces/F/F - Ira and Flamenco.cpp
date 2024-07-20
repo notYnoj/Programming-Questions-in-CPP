@@ -18,7 +18,11 @@ void solve(){
         cin>>a[i];
         mp[a[i]]++;
     }
-    set<int> st(a.begin(), a.end());
+    sort(a.begin(), a.end());
+    auto it = unique(a.begin(), a.end());
+    a.erase(it, a.end());
+    
+
     cout<<ans<<"\n";
 }
 int main(){
