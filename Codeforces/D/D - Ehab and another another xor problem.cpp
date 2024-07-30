@@ -3,15 +3,8 @@
 using namespace std;
 const int MAX_BITS = 30;
 int main(){
-    map<pair<ll, ll>, ll> mp;
     auto query = [&](ll a, ll b, int t) -> ll{
         if(t == 1){
-            swap(a,b);
-        }
-        if(mp.find({a,b}) != mp.end()){
-            return mp[{a,b}];
-        }
-        if(a>b){
             swap(a,b);
         }
 
@@ -21,10 +14,9 @@ int main(){
         if(x == -2){
             exit(0);
         }
-        if(t == 1){
+        if(t == 1 && x!=0){
             (x==1?x = -1:x=1);
         }
-        mp[{a,b}] = x;
         fflush(stdout);
 
         return x;
@@ -34,7 +26,6 @@ int main(){
         vector<ll> number(30, 0);
         ll new1 = 0;
         for(int i = 0; i<MAX_BITS; i++){
-            //thats why my spidey senses were going off lol i knew somethign was wrong here
             ll z = query((new1+(1LL<<i)), new1, 0);
             if(z == -1){
                 number[i] = 1;
@@ -54,7 +45,7 @@ int main(){
         vector<ll> smaller(30);
         vector<ll> bigger(30);
         bool change = false;
-        for(int bit = 29; bit>=0; bit--){
+        for(int bit = MAX_BITS; bit>=0; bit--){
             ll cur_sum = 0;
             ll cur_bigger_sum = 0;
             for(ll i = 29; i>bit; i--){
@@ -66,9 +57,9 @@ int main(){
             ll cur = query(cur_sum, cur_bigger_sum, t);
 
             if(cur == 0) {
-                smaller[bit] = 0;
-                bigger[bit] = 1;
-                cur_bigger_sum+=1LL<<bit;
+                (!change? smaller[bit] = 0:smaller[bit] =1 );
+                (!change? bigger[bit] = 1:bigger[bit] = 0);
+                (!change?cur_bigger_sum+=1LL<<bit:cur_sum+= 1LL<<bit);
                 for(int i = bit-1; i>=0; i--){
                     ll z = query(cur_sum+(1LL<<i), cur_bigger_sum,t);
                     if(z == -1){
@@ -83,35 +74,24 @@ int main(){
             }
             (!change?cur_bigger_sum+=(1<<bit):cur_sum+=(1<<bit));
             ll new_cur = query(cur_sum, cur_bigger_sum, t);
-            if(new_cur == 0) {
-                cur_sum+=1LL<<bit;
-                smaller[bit] = 1;
-                bigger[bit] = 0;
-                for(int i = bit-1; i>=0; i--){
-                    ll z = query(cur_sum+(1LL<<i), cur_bigger_sum,t);
-                    if(z == -1){
-                        bigger[i] = smaller[i] =  1;
-                        cur_sum+=1LL<<i;
-                        cur_bigger_sum+=1LL<<i;
-                    }else{
-                        bigger[i] = smaller[i] = 0;
-                    }
-                }
-                break;
-            }
+            assert(new_cur != 0);
             //calm luh notebook
             if(cur == 1){
                 if(new_cur == 1){
-                    bigger[bit] = smaller[bit] = 0;
+                    (!change?bigger[bit] = 1:bigger[bit]=0);
+                    (!change?smaller[bit] = 0:smaller[bit] = 1);
+                    change = !change;
                 }else{
-                    bigger[bit] =1;
+                    bigger[bit] =0;
                     smaller[bit] = 0;
                 }
             }else{
                 if(new_cur == 1){
-                    biggrr[i] = 0
+                    (!change?bigger[bit] = 1:bigger[bit]=0);
+                    (!change?smaller[bit] = 0:smaller[bit] = 1);
                 }else{
-
+                    bigger[bit] =1;
+                    smaller[bit] = 1;
                 }
             }
         }
