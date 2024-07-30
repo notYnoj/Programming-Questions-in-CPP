@@ -1,4 +1,3 @@
-```cpp
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
@@ -54,6 +53,7 @@ int main(){
     }else{
         vector<ll> smaller(30);
         vector<ll> bigger(30);
+        bool change = false;
         for(int bit = 29; bit>=0; bit--){
             ll cur_sum = 0;
             ll cur_bigger_sum = 0;
@@ -61,9 +61,10 @@ int main(){
                 cur_sum+=(smaller[i]<<i);
                 cur_bigger_sum+=(bigger[i]<<i);
             }
-            cur_sum+=1<<bit;
-
+            //changing it if bigger changes
+            (!change?cur_sum+=(1<<bit):cur_bigger_sum+=(1<<bit));
             ll cur = query(cur_sum, cur_bigger_sum, t);
+
             if(cur == 0) {
                 smaller[bit] = 0;
                 bigger[bit] = 1;
@@ -80,8 +81,7 @@ int main(){
                 }
                 break;
             }
-            cur_sum -= 1<<bit;
-            cur_bigger_sum+=1<<bit;
+            (!change?cur_bigger_sum+=(1<<bit):cur_sum+=(1<<bit));
             ll new_cur = query(cur_sum, cur_bigger_sum, t);
             if(new_cur == 0) {
                 cur_sum+=1LL<<bit;
@@ -99,30 +99,23 @@ int main(){
                 }
                 break;
             }
+            //calm luh notebook
             if(cur == 1){
                 if(new_cur == 1){
-                    
+                    bigger[bit] = smaller[bit] = 0;
                 }else{
-
+                    bigger[bit] =1;
+                    smaller[bit] = 0;
                 }
             }else{
                 if(new_cur == 1){
-
+                    biggrr[i] = 0
                 }else{
 
                 }
             }
         }
-        //a is small b is big
-        //my logic -> if at any point you get 0 previous bits remain, do the t==0 stuff
-        //if == 1 (smaller becomes bigger)
-        //check other if bigger is smaller 0,1 (small,big)
-        //else if bigger bigger 0,0
 
-
-        //else
-        //if bigger smaller 1 1
-        //else bigger bigger 1 0
         ll a = 0;
         ll b = 0;
         for(int i = 0; i<MAX_BITS; i++){
@@ -135,4 +128,4 @@ int main(){
         cout<<"! "<<a<<' '<<b;
         fflush(stdout);
     }
-}```
+}
