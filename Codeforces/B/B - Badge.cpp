@@ -51,5 +51,32 @@ int main(){
     for(int i = 1; i<=n; i++){
         cout<<ans[i]<<' ';
     }
-
 }
+
+
+/*
+Also just for the hell of it heres the brute force o(n^2) solution:
+#include <bits/stdc++.h>
+using namespace std;
+const int mxN = 1005;
+int snitch[mxN];
+int dfs(int u, bool v[mxN]){
+    v[u] = true;
+    int next = snitch[u];
+    if(v[next]) return next;
+    else return dfs(next, v);
+}
+int main(){
+    int n;
+    cin>>n;
+    for(int i = 1 ; i<=n; i++){
+        cin>>snitch[i];
+    }
+    for(int i = 1; i<=n; i++){
+        bool v[mxN];
+        memset(v, false, sizeof(v));
+        cout<<dfs(i, v)<<" ";
+    }
+}
+
+*/
