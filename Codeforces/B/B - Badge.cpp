@@ -4,7 +4,6 @@ const int mxN = 1006;
 bool v[mxN];
 int ans[mxN], started[mxN];
 vector<int> snitch(mxN);
-vector<vector<int>> graph(mxN);
 int node = -1;
 //if i were to remember anything from this exercise is that nodes can be pointed to by mutliple nodes! it isnt js a straight line
 //after realizing this solving was simple tho i got a WA because i didnt realize this
@@ -41,8 +40,6 @@ int main(){
 
     for(int i = 1; i<=n; i++){
         cin>>snitch[i];
-        graph[i].push_back(snitch[i]);
-        graph[snitch[i]].push_back(i);
         ans[i] = INT_MIN;
     }
 
