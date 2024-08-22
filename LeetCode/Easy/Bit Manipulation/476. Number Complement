@@ -1,0 +1,8 @@
+class Solution {
+public:
+    int findComplement(int num) {
+        int x = log2(num);
+        long long z = pow(2, x+1);
+        return (num^(z-1));
+    }
+};
