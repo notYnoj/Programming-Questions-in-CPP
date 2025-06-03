@@ -5,7 +5,7 @@
 using namespace std;
 const int mxN = 2e5 + 5;
 vi graph[mxN];
-ll d[mxN][2]; // d[node][0] = even, d[node][1] = odd
+ll d[mxN][2];
 bool visited[mxN][2];
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec){
@@ -75,8 +75,8 @@ void solve(int tc){
 
 int main() {
     int t;
-    cin >> t;
-    for (int i = 0; i < t; i++) {
+    cin>>t;
+    for (int i=0; i<t; i++) {
         solve(i);
     }
 }
