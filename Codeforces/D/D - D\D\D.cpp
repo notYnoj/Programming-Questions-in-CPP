@@ -64,13 +64,13 @@ void solve(int tc){
             }
         } else {
             if (d[i][0]<=totz || d[i][1]<=(totz-smallodd)) {
-                ans += '1';
+                ans+='1';
             } else {
-                ans += '0';
+                ans+='0';
             }
         }
     }
-    cout << ans << '\n';
+    cout<<ans<<'\n';
 }
 
 int main() {
