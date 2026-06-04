@@ -8,7 +8,6 @@
 #define vvi vector<vector<ll>>
 #include <chrono>
 using namespace std;
-
 int main(){
     int t;
     cin >> t;
@@ -36,7 +35,7 @@ int main(){
                 if(cur%2){
                     cur+=1;
                 }else{
-                    cur/=2;
+                    cur>>=1;
                 }
                 step++;
             }
